@@ -13,7 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-@Builder
+@Builder 
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
