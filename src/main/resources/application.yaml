@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:filter:./blogapp;
+    url: jdbc:h2:file:./test  # Removed the semicolon
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update  # Use update in production

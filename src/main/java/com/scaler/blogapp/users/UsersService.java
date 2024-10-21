@@ -1,7 +1,9 @@
 package com.scaler.blogapp.users;
 
 import com.scaler.blogapp.users.dtos.CreateUserRequest;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,18 +12,20 @@ import java.util.Optional;
 @Service
 public class UsersService {
     private final UsersRepository usersRepository;
+    private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UsersService(UsersRepository usersRepository) {
+    public UsersService(UsersRepository usersRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
         this.usersRepository = usersRepository;
+        this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // Create a new user
-    public UserEntity createUser(CreateUserRequest req) {
-        var newUser = UserEntity.builder()
-                        .username(req.getUsername())
-//                        .password(password)
-                        .email (req.getEmail()).build();
+    public UserEntity createUser(CreateUserRequest u) {
+        UserEntity newUser=modelMapper.map(u,UserEntity.class);
+        newUser.setPassword(passwordEncoder.encode(u.getPassword()));
         return usersRepository.save(newUser);
     }
     public UserEntity getUser(String username){
@@ -35,7 +39,10 @@ public class UsersService {
     public UserEntity loginUser(String username, String password){
         var user = usersRepository.findByUsername(username)
                 .orElseThrow(() -> new UsersService.UserNotFoundException(username));
-
+var passmatch=passwordEncoder.matches(password,user.getPassword());
+if(!passmatch){
+    throw new InvalidCredentialsException();
+}
         return user;
 
     }
@@ -48,6 +55,12 @@ public class UsersService {
 
         public UserNotFoundException(Long userId) {
             super("User " + userId + " not found");
+        }
+    }
+
+    public static class InvalidCredentialsException extends IllegalArgumentException{
+        public InvalidCredentialsException(){
+            super("Invalid Username or Password Exception");
         }
     }
 }

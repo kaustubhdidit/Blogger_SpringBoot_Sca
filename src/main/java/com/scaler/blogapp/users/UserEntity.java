@@ -11,20 +11,23 @@ import java.util.Objects;
 @Entity(name="users")
 @Data
 @Getter
-@Builder
 @Setter
+@Builder
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long id;
     @Column(nullable = false)
     @NonNull
     private String username;
+    @Column(nullable = false)
+    @NonNull
+    private String password;
     @Column(nullable = false)
     @NonNull
     private String email;
