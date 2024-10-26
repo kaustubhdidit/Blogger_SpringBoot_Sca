@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.scaler.blogapp.security.JWTServiceTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-10-26T14:04:26" hostname="Kaustubhs-MacBook-Air.local" time="0.017">
+  <properties/>
+  <testcase name="canCreateJwtFromUserId()" classname="com.scaler.blogapp.security.JWTServiceTests" time="0.017"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
