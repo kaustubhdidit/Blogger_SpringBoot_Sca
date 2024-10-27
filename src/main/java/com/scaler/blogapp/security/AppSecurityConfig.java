@@ -39,18 +39,21 @@ public class AppSecurityConfig {
         return http.build();
     }
 
+
     @Bean
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
         // Allow only the specific frontend origin
-        config.addAllowedOrigin("https://kaustubhdidit.github.io");
+        config.addAllowedOrigin("https://kaustubhdidit.github.io");  // Production frontend
+        config.addAllowedOrigin("http://localhost:5500");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         config.setAllowCredentials(true);  // Allow credentials if required
 
         source.registerCorsConfiguration("/**", config);
+        System.out.println(config.getAllowedOrigins());
         return source;
     }
 }
