@@ -48,6 +48,7 @@ public class AppSecurityConfig {
         // Allow only the specific frontend origin
         config.addAllowedOrigin("https://kaustubhdidit.github.io");  // Production frontend
         config.addAllowedOrigin("http://localhost:5500");
+        config.addAllowedOrigin("https://blog-fro-tester.vercel.app/");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         config.setAllowCredentials(true);  // Allow credentials if required
