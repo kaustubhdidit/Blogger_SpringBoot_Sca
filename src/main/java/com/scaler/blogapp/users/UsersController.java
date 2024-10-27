@@ -15,7 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "https://kaustubhdidit.github.io") // Adjust origins for production
+@CrossOrigin // Adjust origins for production
 @Validated
 public class UsersController {
 
