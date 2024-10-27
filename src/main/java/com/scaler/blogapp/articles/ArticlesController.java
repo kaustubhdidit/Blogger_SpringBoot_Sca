@@ -3,9 +3,11 @@ package com.scaler.blogapp.articles;
 import com.scaler.blogapp.users.UserEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/articles")
+@CrossOrigin(origins = "*")
 public class ArticlesController {
 
     @GetMapping("")

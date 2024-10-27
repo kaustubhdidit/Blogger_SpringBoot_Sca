@@ -9,11 +9,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import java.net.URI;
 
 @RestController
 @RequestMapping("/users")
+
+@CrossOrigin(origins = "*") // Adjust origins as needed
 public class UsersController {
 
     private final UsersService usersService;
