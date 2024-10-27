@@ -8,14 +8,15 @@ import com.scaler.blogapp.common_dtos.ErrorResponse;  // Custom ErrorResponse
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import java.net.URI;
 
 @RestController
 @RequestMapping("/users")
-
-@CrossOrigin(origins = "*") // Adjust origins as needed
+@CrossOrigin(origins = "https://kaustubhdidit.github.io") // Adjust origins for production
+@Validated
 public class UsersController {
 
     private final UsersService usersService;
