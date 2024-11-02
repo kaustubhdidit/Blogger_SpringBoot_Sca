@@ -30,7 +30,7 @@ public class AppSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-//                .cors(cors -> cors.configurationSource(null)) // Disable CORS
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // enable global CORS
                 .csrf(csrf -> csrf.disable())  // Disable CSRF
                 .authorizeHttpRequests(authz -> authz
                         .anyRequest().permitAll()  // Allow all requests
