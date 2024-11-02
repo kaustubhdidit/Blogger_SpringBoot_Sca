@@ -11,6 +11,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 public class AppSecurityConfig {
@@ -46,9 +48,10 @@ public class AppSecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         // Allow only the specific frontend origin
-        config.addAllowedOrigin("https://kaustubhdidit.github.io");  // Production frontend
-        config.addAllowedOrigin("http://localhost:5500");
-        config.addAllowedOrigin("https://blog-fro-tester.vercel.app/");
+//        config.addAllowedOrigin("https://kaustubhdidit.github.io");  // Production frontend
+//        config.addAllowedOrigin("http://127.0.0.1:5500/");
+//        config.addAllowedOrigin("https://blog-fro-tester.vercel.app/");
+        config.setAllowedOriginPatterns(List.of("*"));
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         config.setAllowCredentials(true);  // Allow credentials if required
