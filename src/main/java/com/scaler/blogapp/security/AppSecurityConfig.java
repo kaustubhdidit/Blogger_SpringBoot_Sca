@@ -30,34 +30,36 @@ public class AppSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // enable global CORS
-                .csrf(csrf -> csrf.disable())  // Disable CSRF
+                .csrf(csrf -> csrf.disable())  // Disable CSRF protection
                 .authorizeHttpRequests(authz -> authz
                         .anyRequest().permitAll()  // Allow all requests
                 );
-
-        http.addFilterBefore(jwtAuthenticationFilter, AnonymousAuthenticationFilter.class);
 
         return http.build();
     }
 
 
+
+
+
     @Bean
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
         CorsConfiguration config = new CorsConfiguration();
 
         // Allow only the specific frontend origin
 //        config.addAllowedOrigin("https://kaustubhdidit.github.io");  // Production frontend
 //        config.addAllowedOrigin("http://127.0.0.1:5500/");
 //        config.addAllowedOrigin("https://blog-fro-tester.vercel.app/");
-        config.setAllowedOriginPatterns(List.of("*"));
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
+        config.addAllowedOriginPattern("*");
+        config.addAllowedHeader(CorsConfiguration.ALL);
+        config.addAllowedMethod(CorsConfiguration.ALL);
         config.setAllowCredentials(true);  // Allow credentials if required
+        config.addAllowedOriginPattern(CorsConfiguration.ALL);
 
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
-        System.out.println(config.getAllowedOrigins());
+//        System.out.println(configuration.getAllowedOrigins());
         return source;
     }
 }

@@ -28,6 +28,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.modelmapper:modelmapper:3.0.0'
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
 
     // H2 Database Dependency
     implementation 'com.h2database:h2:2.2.224'  // Use only this for H2

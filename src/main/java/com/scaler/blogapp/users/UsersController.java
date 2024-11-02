@@ -15,7 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/users")
-//@CrossOrigin(origins = {"https://kaustubhdidit.github.io", "http://localhost:5500"})
+@CrossOrigin
 //@Validated
 public class UsersController {
 
